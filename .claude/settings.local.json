@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(\"/c/Program Files/nodejs/npx.cmd\" skills add remotion-dev/skills)",
+      "Bash(export PATH=\"/c/Program Files/nodejs:$PATH\")",
+      "Bash(npx skills:*)",
+      "Bash(printf '\\\\x1b[B\\\\x1b[B \\\\n')",
+      "Bash(npx remotion:*)",
+      "Bash(gh auth:*)"
+    ]
+  }
+}
