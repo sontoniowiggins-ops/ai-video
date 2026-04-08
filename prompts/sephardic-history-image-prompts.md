@@ -4,6 +4,12 @@ A series of historically grounded image prompts for AI image generators (Midjour
 
 ---
 
+## Prompt 1 — The Capture
+
+> "Roman soldiers binding dark-skinned Hebrew captives in the ruins of Jerusalem, 70 AD, smoke rising from a destroyed stone temple in the background, cinematic oil painting style"
+
+---
+
 ## Prompt 2 — Arrival in Sepharad
 
 > "Shackled dark-skinned Hebrew prisoners arriving by Roman ship on the Iberian coast, being greeted by dark-complexioned Jewish merchants already living there, 1st century AD, dramatic golden hour lighting, historical painting style"
