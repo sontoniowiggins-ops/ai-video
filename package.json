@@ -1,0 +1,21 @@
+{
+  "name": "ai-video",
+  "version": "1.0.0",
+  "description": "Sephardic History Documentary Trailer",
+  "scripts": {
+    "start": "remotion studio",
+    "build:tiktok": "remotion render src/index.jsx SephardicTikTok out/tiktok.mp4",
+    "build:youtube": "remotion render src/index.jsx SephardicYouTube out/youtube.mp4",
+    "generate:images": "node scripts/generate-images.js",
+    "generate:voice": "node scripts/generate-voiceover.js",
+    "generate:all": "node scripts/generate-images.js && node scripts/generate-voiceover.js"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "dotenv": "^16.4.5",
+    "openai": "^4.52.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.0"
+  }
+}
