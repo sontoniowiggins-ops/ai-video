@@ -1,0 +1,22 @@
+======================================
+  DROP YOUR 6 IMAGES INTO THIS FOLDER
+======================================
+
+Save each image with EXACTLY this name (copy/paste the name):
+
+  scene-01-scroll.png       ← Prophecy / Hebrew scroll
+  scene-02-jerusalem.png    ← 70 AD Jerusalem, chains + fire
+  scene-03-spain.png        ← Spain / Portugal scattering
+  scene-04-westafrica.png   ← West Africa, king on throne
+  scene-05-maps.png         ← Ancient map: Juda / Kingdom of Judah
+  scene-06-slavery.png      ← Slavery / iron yokes + ships
+
+HOW TO RENAME AN IMAGE ON WINDOWS:
+  1. Right-click the image file
+  2. Click "Rename"
+  3. Type the exact name from the list above
+  4. Press Enter
+
+Once all 6 images are in this folder,
+go back and run: START - Open Preview.bat
+======================================

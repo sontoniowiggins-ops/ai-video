@@ -1,5 +1,9 @@
 node_modules/
 .env
 out/
-public/images/
 public/audio/
+# Keep images folder but ignore actual image files
+public/images/*.png
+public/images/*.jpg
+public/images/*.jpeg
+public/images/*.webp
