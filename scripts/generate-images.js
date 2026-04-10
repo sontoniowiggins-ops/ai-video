@@ -2,15 +2,15 @@
 // Run: node scripts/generate-images.js
 // Requires OPENAI_API_KEY in .env
 //
-// IMAGES ALREADY GENERATED (copy manually to public/images/):
-//   scene-02-jerusalem.png  — Black Hebrews in chains, Jerusalem burning
-//   scene-03-spain.png      — Hebrew scholar (left) + expulsion to ships (right)
-//   scene-04-westafrica.png — West African king on throne, marketplace
-//   scene-05-maps.png       — Ancient map: "Juda / Kingdom of Judah / Iudeorum Terra"
-//
 // IMAGES THIS SCRIPT WILL GENERATE:
 //   scene-01-scroll.png     — Opening parchment scroll
+//   scene-03-spain.png      — Spain/Portugal dock, Hebrew captives + Roman soldiers (REGENERATED)
 //   scene-06-slavery.png    — Iron yokes, slave ship
+//
+// IMAGES ALREADY GENERATED (copy manually to public/images/):
+//   scene-02-jerusalem.png  — Black Hebrews in chains, Jerusalem burning
+//   scene-04-westafrica.png — West African king on throne, marketplace
+//   scene-05-maps.png       — Ancient map: "Juda / Kingdom of Judah / Iudeorum Terra"
 
 import 'dotenv/config';
 import OpenAI from 'openai';
@@ -39,6 +39,30 @@ const IMAGES = [
       'warm golden side lighting, deep shadows, dust particles floating in air, ' +
       'shallow depth of field, dramatic cinematic lighting, no glow effects, ' +
       'historically grounded, sacred atmosphere, extremely detailed, ' + STYLE_LOCK,
+  },
+  {
+    filename: 'scene-03-spain.png',
+    scene: 'Spain/Portugal — Hebrew Captives Arriving at Port',
+    prompt:
+      'Ultra-realistic cinematic historical scene, 8K. ' +
+      'Massive ancient dock in Spain or Portugal, stone port city buildings in background, ' +
+      'large wooden Roman-era transport ships unloading thousands of captives at harbor. ' +
+      'FOREGROUND: Black Hebrew men with deep brown skin, African phenotype, ' +
+      'faces sharp and clearly visible, strong features, textured natural hair, ' +
+      'wearing worn torn linen garments, iron chains at neck and wrists, ' +
+      'expressions exhausted but deeply dignified and proud. ' +
+      'MIDGROUND: hundreds of captives descending ship gangplanks, massive crowd scale. ' +
+      'RIGHT SIDE: wealthy Black noblemen in royal robes, gold embroidery, ' +
+      'head coverings, handing coins to soldiers, redeeming captives. ' +
+      'LEFT SIDE: Roman soldiers, clearly white European appearance, ' +
+      'full Roman armor, red-plumed helmets, controlling captives with authority. ' +
+      'LIGHTING: deep golden cinematic sunset lighting, dramatic long shadows, ' +
+      'dust particles in air, warm amber and orange glow, epic scale. ' +
+      'Style reference: rich sepia-gold color palette like an illuminated manuscript painting, ' +
+      'painterly realism matching a cinematic historical epic, sharp detailed faces, ' +
+      'NO soft focus, NO racial ambiguity, NO cartoon, NO blur, ' +
+      'faces must be sharp expressive and detailed, ' +
+      'emotional powerful epic historical tone, ' + STYLE_LOCK,
   },
   {
     filename: 'scene-06-slavery.png',
