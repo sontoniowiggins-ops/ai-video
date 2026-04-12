@@ -82,19 +82,31 @@ export const DeuteronomyScene = () => {
           fill="#06030e"
         />
 
-        {/* FIGURE ON PEAK — Moses / prophet, arms raised */}
-        <g transform="translate(955, 538)">
-          {/* Flowing robe */}
-          <path d="M-5,0 L-12,42 L0,36 L12,42 L5,0 Z" fill="#06030e" />
+        {/* Glow around Moses figure */}
+        <ellipse cx="960" cy="490" rx="60" ry="80"
+          fill={`rgba(140,100,255,${purpleGlow * 1.4 + (isFlash ? 0.3 : 0)})`}
+          filter="url(#glow)"
+        />
+        <defs>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="12" result="blur" />
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        {/* FIGURE ON PEAK — Moses / prophet, FULL BODY visible above mountain */}
+        <g transform="translate(960, 518)">
+          {/* Staff (behind body) */}
+          <line x1="14" y1="-80" x2="26" y2="44" stroke="#c8b8ff" strokeWidth="5" strokeLinecap="round" />
+          {/* Flowing robe — full length */}
+          <path d="M-10,-40 L-20,0 L-16,44 L0,38 L16,44 L20,0 L10,-40 Z" fill="#c8b8ff" />
           {/* Body */}
-          <rect x="-4" y="-32" width="8" height="36" fill="#06030e" />
+          <rect x="-8" y="-82" width="16" height="46" fill="#c8b8ff" rx="3"/>
           {/* Head */}
-          <circle cx="0" cy="-40" r="8" fill="#06030e" />
+          <circle cx="0" cy="-96" r="13" fill="#c8b8ff" />
           {/* Arms raised in Y shape — prophet calling heaven */}
-          <line x1="0" y1="-20" x2="-28" y2="-50" stroke="#06030e" strokeWidth="5" strokeLinecap="round" />
-          <line x1="0" y1="-20" x2="28" y2="-50" stroke="#06030e" strokeWidth="5" strokeLinecap="round" />
-          {/* Staff */}
-          <line x1="6" y1="0" x2="18" y2="58" stroke="#06030e" strokeWidth="4" strokeLinecap="round" />
+          <line x1="0" y1="-60" x2="-46" y2="-108" stroke="#c8b8ff" strokeWidth="8" strokeLinecap="round" />
+          <line x1="0" y1="-60" x2="46" y2="-108" stroke="#c8b8ff" strokeWidth="8" strokeLinecap="round" />
         </g>
 
         {/* CROWD at mountain base */}
