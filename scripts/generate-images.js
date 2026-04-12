@@ -78,29 +78,29 @@ const IMAGES = [
   },
   {
     filename: 'scene-08-americas.png',
-    scene: 'The Americas — Judah Arrives at New World Shore',
+    scene: 'The Americas — Ships Arriving at New World Shore',
     prompt:
-      'Large wooden European slave ships arriving at a tropical Caribbean coastline, ' +
-      'palm trees, lush green hills, new world landscape, ' +
-      'Black captives with deep brown skin, African phenotype, iron chains at neck and wrists, ' +
-      'being forced off ships onto unfamiliar shores, ' +
-      'expressions of exhaustion, grief, and quiet dignity, ' +
-      'European colonizers in 16th century dress overseeing, ' +
-      'dramatic overcast golden-gray sky, ocean mist, cinematic wide shot, ' +
-      'hundreds of captives visible, overwhelming scale, ' +
-      'cold blue-gray color grading, emotional and powerful, ' + STYLE_LOCK,
+      'Dramatic wide cinematic shot: three large 16th century wooden galleon sailing ships ' +
+      'approaching a lush tropical Caribbean coastline at golden dusk, ' +
+      'massive white sails billowing, dark hulls cutting through deep turquoise-green water, ' +
+      'tall palm trees lining the shore, dense jungle hills in background, ' +
+      'dramatic overcast amber and gray sky with rays of sunlight breaking through clouds, ' +
+      'ocean mist over water, historically accurate ship rigging and flags, ' +
+      'powerful and ominous atmosphere, wide establishing shot, ' +
+      'warm golden-amber color grading, emotional and cinematic, ' + STYLE_LOCK,
   },
   {
     filename: 'scene-06-slavery.png',
-    scene: 'Slavery — Iron Yokes and Slave Ship',
+    scene: 'Prophecy — Iron and Ships',
     prompt:
-      'Black enslaved men with deep brown skin, African phenotype, ' +
-      'heavy iron yokes around their necks, thick chains on wrists and ankles, ' +
-      'being loaded onto a large wooden slave ship at a West African coastal dock, ' +
-      'ocean waves in background, overcast sky, harsh cold lighting, ' +
-      'expressions of exhaustion, pain, and resistance, ' +
-      'cold blue-gray color grading, slow motion feel, cinematic close-up on faces and iron, ' +
-      'historically grounded, emotional realism, no exaggeration, ' + STYLE_LOCK,
+      'Close-up still life of heavy ancient iron neck collar and thick iron chain links ' +
+      'resting on weathered dark wood planks of a ship deck, ' +
+      'dramatic side lighting casting deep shadows, rust and age on the iron, ' +
+      'ocean water visible through gaps in wood, stormy dark sky above, ' +
+      'old wooden ship mast and rigging in background, ' +
+      'powerful and sobering historical artifact documentary photography, ' +
+      'cold blue-gray color grading, shallow depth of field, extreme detail on iron texture, ' +
+      'cinematic and emotional, ' + STYLE_LOCK,
   },
 ];
 
