@@ -43,7 +43,7 @@ export const KenBurns = ({ src, direction = 'right', startScale = 1.0, endScale 
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: 'center 20%',
+            objectPosition: 'center top',
             transform: `scale(${scale}) translate(${x}%, ${y}%)`,
             transformOrigin: 'center center',
           }}
