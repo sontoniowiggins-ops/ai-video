@@ -1,10 +1,7 @@
 // scripts/upload-to-drive.js
-// Uploads out/return-of-judah.mp4 to Google Drive using a service account.
-// Run after render: node scripts/upload-to-drive.js
-//
-// Required .env variables:
-//   GOOGLE_SERVICE_ACCOUNT_KEY_FILE=credentials/service-account.json
-//   GOOGLE_DRIVE_FOLDER_ID=your-folder-id-from-drive-url
+// Uploads out/return-of-judah.mp4 to Google Drive using OAuth2.
+// First-time setup: node scripts/drive-auth.js
+// Then upload any time: node scripts/upload-to-drive.js
 
 const { google } = require('googleapis');
 const fs = require('fs');
@@ -14,41 +11,32 @@ require('dotenv').config();
 const VIDEO_PATH = path.join(__dirname, '..', 'out', 'return-of-judah.mp4');
 
 async function uploadToDrive() {
-  const keyFile = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_FILE;
-  const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID;
+  const clientId     = process.env.GOOGLE_CLIENT_ID;
+  const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+  const refreshToken = process.env.GOOGLE_REFRESH_TOKEN;
+  const folderId     = process.env.GOOGLE_DRIVE_FOLDER_ID;
 
-  if (!keyFile) {
-    console.error('ERROR: GOOGLE_SERVICE_ACCOUNT_KEY_FILE is not set in .env');
-    console.error('See credentials/README.md for setup instructions.');
-    process.exit(1);
-  }
-
-  const keyPath = path.resolve(__dirname, '..', keyFile);
-  if (!fs.existsSync(keyPath)) {
-    console.error(`ERROR: Service account key not found at: ${keyPath}`);
-    console.error('Download your service account JSON from Google Cloud Console.');
-    console.error('See credentials/README.md for setup instructions.');
+  if (!clientId || !clientSecret || !refreshToken) {
+    console.error('ERROR: Google Drive credentials missing from .env');
+    console.error('Run this first:  node scripts/drive-auth.js');
     process.exit(1);
   }
 
   if (!folderId) {
     console.error('ERROR: GOOGLE_DRIVE_FOLDER_ID is not set in .env');
-    console.error('Open your target Drive folder in a browser and copy the ID from the URL.');
-    console.error('Example: https://drive.google.com/drive/folders/THIS_PART_IS_THE_ID');
+    console.error('Open your Drive folder in a browser and copy the ID from the URL.');
+    console.error('Example URL: https://drive.google.com/drive/folders/COPY_THIS_PART');
     process.exit(1);
   }
 
   if (!fs.existsSync(VIDEO_PATH)) {
-    console.error(`ERROR: Video not found at ${VIDEO_PATH}`);
-    console.error('Render the video first:');
+    console.error('ERROR: Video not found. Render it first:');
     console.error('  npx remotion render src/index.jsx SephardicYouTube out/return-of-judah.mp4');
     process.exit(1);
   }
 
-  const auth = new google.auth.GoogleAuth({
-    keyFile: keyPath,
-    scopes: ['https://www.googleapis.com/auth/drive.file'],
-  });
+  const auth = new google.auth.OAuth2(clientId, clientSecret);
+  auth.setCredentials({ refresh_token: refreshToken });
 
   const drive = google.drive({ version: 'v3', auth });
 
@@ -74,7 +62,7 @@ async function uploadToDrive() {
 
   const file = response.data;
 
-  // Make the file viewable by anyone with the link
+  // Make file viewable by anyone with the link
   await drive.permissions.create({
     fileId: file.id,
     requestBody: { role: 'reader', type: 'anyone' },
