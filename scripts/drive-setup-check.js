@@ -1,10 +1,8 @@
 // scripts/drive-setup-check.js
-// Run this to verify your Google Drive service account is configured correctly.
+// Run this to verify your Google Drive OAuth2 is configured correctly.
 // Usage: node scripts/drive-setup-check.js
 
 const { google } = require('googleapis');
-const fs = require('fs');
-const path = require('path');
 require('dotenv').config();
 
 async function check() {
@@ -17,71 +15,32 @@ async function check() {
 
   console.log('\n=== Google Drive Setup Check ===\n');
 
-  // 1. Check env vars
-  const keyFile = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_FILE;
-  const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID;
+  const clientId     = process.env.GOOGLE_CLIENT_ID;
+  const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+  const refreshToken = process.env.GOOGLE_REFRESH_TOKEN;
+  const folderId     = process.env.GOOGLE_DRIVE_FOLDER_ID;
 
-  if (keyFile) {
-    ok('.env has GOOGLE_SERVICE_ACCOUNT_KEY_FILE');
-  } else {
-    fail('GOOGLE_SERVICE_ACCOUNT_KEY_FILE not set in .env');
-    info('Add: GOOGLE_SERVICE_ACCOUNT_KEY_FILE=credentials/service-account.json');
-  }
+  if (clientId)     { ok('.env has GOOGLE_CLIENT_ID'); }
+  else              { fail('GOOGLE_CLIENT_ID not set — run: node scripts/drive-auth.js'); }
 
-  if (folderId) {
-    ok('.env has GOOGLE_DRIVE_FOLDER_ID');
-  } else {
-    fail('GOOGLE_DRIVE_FOLDER_ID not set in .env');
-    info('Open target Drive folder in browser and copy the ID from the URL');
-  }
+  if (clientSecret) { ok('.env has GOOGLE_CLIENT_SECRET'); }
+  else              { fail('GOOGLE_CLIENT_SECRET not set — run: node scripts/drive-auth.js'); }
 
-  // 2. Check key file exists
-  if (keyFile) {
-    const keyPath = path.resolve(__dirname, '..', keyFile);
-    if (fs.existsSync(keyPath)) {
-      ok(`Service account key file found: ${keyFile}`);
-      // 3. Try authenticating
-      try {
-        const auth = new google.auth.GoogleAuth({
-          keyFile: keyPath,
-          scopes: ['https://www.googleapis.com/auth/drive.file'],
-        });
-        const client = await auth.getClient();
-        const token = await client.getAccessToken();
-        if (token.token) {
-          ok('Service account authentication successful');
-        } else {
-          fail('Authentication returned no token');
-        }
-      } catch (err) {
-        fail(`Authentication failed: ${err.message}`);
-        info('Check that the Drive API is enabled in Google Cloud Console');
-      }
+  if (refreshToken) { ok('.env has GOOGLE_REFRESH_TOKEN'); }
+  else              { fail('GOOGLE_REFRESH_TOKEN not set — run: node scripts/drive-auth.js'); }
 
-      // 4. Try listing the target folder
-      if (folderId) {
-        try {
-          const auth = new google.auth.GoogleAuth({
-            keyFile: keyPath,
-            scopes: ['https://www.googleapis.com/auth/drive.file'],
-          });
-          const drive = google.drive({ version: 'v3', auth });
-          const res = await drive.files.list({
-            q: `'${folderId}' in parents`,
-            pageSize: 1,
-            fields: 'files(id,name)',
-          });
-          ok(`Drive folder is accessible (${res.data.files.length} file(s) visible)`);
-        } catch (err) {
-          fail(`Cannot access Drive folder: ${err.message}`);
-          info('Make sure you shared the folder with the service account email.');
-          info('Find the email in your service-account.json under "client_email".');
-        }
-      }
-    } else {
-      fail(`Key file not found: ${keyPath}`);
-      info('Download the service account JSON from Google Cloud Console');
-      info('and place it at the path above.');
+  if (folderId)     { ok('.env has GOOGLE_DRIVE_FOLDER_ID'); }
+  else              { fail('GOOGLE_DRIVE_FOLDER_ID not set in .env'); info('Open your Drive folder in browser and copy the ID from the URL'); }
+
+  if (clientId && clientSecret && refreshToken && folderId) {
+    try {
+      const auth = new google.auth.OAuth2(clientId, clientSecret);
+      auth.setCredentials({ refresh_token: refreshToken });
+      const drive = google.drive({ version: 'v3', auth });
+      const res = await drive.files.list({ q: `'${folderId}' in parents`, pageSize: 1, fields: 'files(id)' });
+      ok(`Connected to Google Drive folder (${res.data.files.length} file(s) found)`);
+    } catch (err) {
+      fail(`Could not connect to Drive: ${err.message}`);
     }
   }
 
@@ -93,12 +52,11 @@ async function check() {
     console.log('  node scripts/upload-to-drive.js');
   } else {
     console.log('\nFix the issues above, then run this check again.');
-    console.log('See credentials/README.md for full setup instructions.');
   }
   console.log('');
 }
 
 check().catch(err => {
-  console.error('Check failed unexpectedly:', err.message);
+  console.error('Check failed:', err.message);
   process.exit(1);
 });

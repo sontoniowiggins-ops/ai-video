@@ -9,3 +9,5 @@ public/images/*.jpeg
 public/images/*.webp
 # Google service account key — never commit this
 credentials/*.json
+# Google credentials — never commit this
+drive-credentials.env
