@@ -28,6 +28,14 @@ server.listen(8080, '0.0.0.0', () => console.log('Download ready'));
 
 3. Tell the user: Open browser and go to http://192.168.1.216:8080/return-of-judah.mp4
 
+4. Upload to Google Drive (if credentials are configured):
+```
+node scripts/upload-to-drive.js
+```
+This uploads out/return-of-judah.mp4 to the configured Drive folder and prints the link.
+To check Drive is set up: node scripts/drive-setup-check.js
+To render AND upload in one command: npm run render:upload
+
 ## PROJECT OWNER
 Elder Sontonio Wiggins III — he is the director. Do all the work.
 
@@ -38,4 +46,4 @@ Images live in public/images/. Generate with: node scripts/generate-images.js
 ## UPCOMING WORK
 - Episode 1: Full Jerusalem documentary (25 images)
 - Voiceover narration for all scenes
-- Auto-upload to Google Drive / YouTube after render
+- YouTube upload after render

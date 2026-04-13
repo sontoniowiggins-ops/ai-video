@@ -8,11 +8,15 @@
     "build:youtube": "remotion render src/index.jsx SephardicYouTube out/youtube.mp4",
     "generate:images": "node scripts/generate-images.js",
     "generate:voice": "node scripts/generate-voiceover.js",
-    "generate:all": "node scripts/generate-images.js && node scripts/generate-voiceover.js"
+    "generate:all": "node scripts/generate-images.js && node scripts/generate-voiceover.js",
+    "upload:drive": "node scripts/upload-to-drive.js",
+    "drive:check": "node scripts/drive-setup-check.js",
+    "render:upload": "npm run build:youtube && npm run upload:drive"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.0",
     "dotenv": "^16.4.5",
+    "googleapis": "^171.4.0",
     "openai": "^4.52.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
