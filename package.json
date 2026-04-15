@@ -8,9 +8,11 @@
     "build:youtube": "remotion render src/index.jsx SephardicYouTube out/youtube.mp4",
     "generate:images": "node scripts/generate-images.js",
     "generate:voice": "node scripts/generate-voiceover.js",
+    "generate:script": "node scripts/generate-script.js",
     "generate:all": "node scripts/generate-images.js && node scripts/generate-voiceover.js"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.52.0",
     "@remotion/cli": "^4.0.0",
     "dotenv": "^16.4.5",
     "openai": "^4.52.0",
