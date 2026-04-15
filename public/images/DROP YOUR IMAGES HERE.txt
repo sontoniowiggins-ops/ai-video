@@ -1,0 +1,31 @@
+======================================
+  DROP YOUR 6 IMAGES INTO THIS FOLDER
+======================================
+
+You can use ANY filename — no renaming needed!
+
+Your images will be assigned to the 6 scenes
+in alphabetical order:
+
+  1st image (alphabetically) → Scene 1: Prophecy / Scroll
+  2nd image                  → Scene 2: Jerusalem 70 AD
+  3rd image                  → Scene 3: Spain / Portugal
+  4th image                  → Scene 4: West Africa
+  5th image                  → Scene 5: Ancient Maps
+  6th image                  → Scene 6: Slavery / Ships
+
+TIP: To control which image goes to which scene,
+     rename them so they sort in the right order.
+     Example:  1-scroll.png, 2-jerusalem.png, etc.
+     (Windows: right-click → Rename)
+
+OR just use the exact scene names if you prefer:
+  scene-01-scroll.png
+  scene-02-jerusalem.png
+  scene-03-spain.png
+  scene-04-westafrica.png
+  scene-05-maps.png
+  scene-06-slavery.png
+
+After dropping images here, run: ONE CLICK RENDER.bat
+======================================
