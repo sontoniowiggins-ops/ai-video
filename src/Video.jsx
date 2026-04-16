@@ -4,6 +4,7 @@ import { TextOverlay } from './components/TextOverlay';
 import { ScriptureScene } from './components/ScriptureScene';
 import { ColorGrade } from './components/ColorGrade';
 import { TitleCard } from './components/TitleCard';
+import { ScrollScene } from './components/scenes/ScrollScene';
 import { SCENES } from './scenes';
 
 export const SephardicVideo = ({ platform = 'youtube' }) => {
@@ -21,29 +22,30 @@ export const SephardicVideo = ({ platform = 'youtube' }) => {
           <Sequence key={scene.id} from={from} durationInFrames={durationInFrames}>
             <ColorGrade grade={scene.colorGrade}>
 
-              {/* Voiceover */}
               {scene.audio && (
                 <Audio src={staticFile(`audio/${scene.audio}`)} />
               )}
 
-              {/* Opening prophecy scroll */}
+              {/* Opening scroll — animated background + scripture text */}
               {scene.type === 'scripture' && (
-                <ScriptureScene
-                  scripture={scene.scripture}
-                  image={scene.image}
-                  platform={platform}
-                />
+                <AbsoluteFill>
+                  <ScrollScene />
+                  <ScriptureScene
+                    scripture={scene.scripture}
+                    image={null}
+                    platform={platform}
+                  />
+                </AbsoluteFill>
               )}
 
-              {/* Standard scene — image + text */}
+              {/* All scenes use real DALL-E photorealistic images */}
               {scene.type === 'scene' && (
                 <AbsoluteFill>
                   <KenBurns
                     src={scene.image}
                     direction={i % 2 === 0 ? 'right' : 'left'}
-                    // Maps scene: slower subtle zoom only
-                    startScale={scene.id === 'maps' ? 1.0 : 1.0}
-                    endScale={scene.id === 'maps' ? 1.08 : 1.12}
+                    startScale={1.0}
+                    endScale={1.12}
                   />
                   <TextOverlay lines={scene.lines} platform={platform} />
                 </AbsoluteFill>
