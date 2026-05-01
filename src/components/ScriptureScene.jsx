@@ -16,17 +16,18 @@ export const ScriptureScene = ({ scripture, image, platform = 'youtube' }) => {
   const imgSrc = key ? IMAGES[key] : null;
 
   return (
-    <AbsoluteFill style={{ backgroundColor: '#000', overflow: 'hidden' }}>
-      {/* Parchment scroll background */}
-      <AbsoluteFill style={{ opacity: bgOpacity }}>
-        {imgSrc && (
+    <AbsoluteFill style={{ overflow: 'hidden' }}>
+      {/* Background is handled by ScrollScene (rendered beneath this in Video.jsx) */}
+      {/* If a real image is provided, overlay it */}
+      {imgSrc && (
+        <AbsoluteFill style={{ opacity: bgOpacity }}>
           <img
             src={imgSrc}
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
-        )}
-        <AbsoluteFill style={{ backgroundColor: 'rgba(0,0,0,0.45)' }} />
-      </AbsoluteFill>
+          <AbsoluteFill style={{ backgroundColor: 'rgba(0,0,0,0.45)' }} />
+        </AbsoluteFill>
+      )}
 
       {/* Scripture text */}
       <AbsoluteFill

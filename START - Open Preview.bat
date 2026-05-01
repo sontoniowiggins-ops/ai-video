@@ -3,17 +3,23 @@ title RETURN OF JUDAH - Preview
 color 0A
 echo.
 echo  ==========================================
-echo    RETURN OF JUDAH - Starting Preview
+echo    RETURN OF JUDAH - Live Preview
 echo  ==========================================
 echo.
-echo  Starting image server on port 3001...
+echo  Welcome Elder Wiggins!
+echo.
+echo  Step 1: Getting Claude's latest updates...
+git pull
+echo.
+echo  Step 2: Installing any new packages...
+npm install --legacy-peer-deps
+echo.
+echo  Step 3: Starting live preview...
+echo  Your browser will open automatically.
+echo  DO NOT close this window!
+echo.
 start "Image Server" /min cmd /k "node image-server.js"
-echo  Waiting for server to start...
-timeout /t 4 /nobreak >nul
-echo  Opening Remotion Studio...
+timeout /t 3 /nobreak >nul
 start http://localhost:3000
-echo.
-echo  Do NOT close this window.
-echo.
 call npm start
 pause
