@@ -11,7 +11,10 @@
     "generate:images": "node scripts/generate-images.js",
     "generate:leonardo:batch01": "node scripts/generate-leonardo-batch01.js",
     "generate:voice": "node scripts/generate-voiceover.js",
-    "generate:all": "node scripts/generate-images.js && node scripts/generate-voiceover.js"
+    "generate:all": "node scripts/generate-images.js && node scripts/generate-voiceover.js",
+    "generate:higgsfield-images": "node scripts/generate-higgsfield-images.js",
+    "generate:higgsfield-video": "node scripts/generate-higgsfield-video.js",
+    "generate:higgsfield-all": "node scripts/generate-higgsfield-images.js && node scripts/generate-higgsfield-video.js"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.0",
